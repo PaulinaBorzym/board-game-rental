@@ -21,6 +21,7 @@ public class Game {
     private String description;
     private double price;
     private List<User> users;
+    private List<Cart> carts;
 
     public Game(String gameName, String description, double price) {
         this.gameName = gameName;
@@ -57,5 +58,15 @@ public class Game {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "games")
     public List<User> getUsers() {
         return users;
+    }
+
+    @OneToMany(
+            targetEntity = Cart.class,
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Cart> getCarts() {
+        return carts;
     }
 }
