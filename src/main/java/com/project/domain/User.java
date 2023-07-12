@@ -21,7 +21,8 @@ public class User {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private List<Game> games;
+
+    private List<Rent> rentList;
 
     public User(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;
@@ -62,13 +63,13 @@ public class User {
         return phoneNumber;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "JOIN_USER_GAME",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "GAME_ID", referencedColumnName = "GAME_ID")}
+    @OneToMany(
+            targetEntity = Rent.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
-    public List<Game> getGames() {
-        return games;
+    public List<Rent> getRentList() {
+        return rentList;
     }
 }

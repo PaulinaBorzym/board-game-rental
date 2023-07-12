@@ -11,18 +11,20 @@ import java.util.stream.Collectors;
 public class GameMapper {
     public Game mapToGame(final GameDto gameDto) {
         return new Game(
-                gameDto.getGameName(),
-                gameDto.getDescription(),
-                gameDto.getPrice()
+                gameDto.getTitle(),
+                gameDto.getPrice(),
+                gameDto.getPublicationYear(),
+                gameDto.getType()
         );
     }
 
     public GameDto mapToGameDto(final Game game){
         return new GameDto(
                 game.getGameId(),
-                game.getGameName(),
-                game.getDescription(),
-                game.getPrice()
+                game.getTitle(),
+                game.getPrice(),
+                game.getPublicationYear(),
+                game.getType()
         );
     }
     public List<GameDto> mapToGameDtoList(final List<Game> gameList){

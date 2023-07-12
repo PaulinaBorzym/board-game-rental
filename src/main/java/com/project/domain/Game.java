@@ -1,5 +1,6 @@
 package com.project.domain;
 
+import com.project.enums.GameType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -17,16 +18,18 @@ import java.util.List;
 public class Game {
 
     private Long gameId;
-    private String gameName;
-    private String description;
+    private String title;
     private double price;
-    private List<User> users;
-    private List<Cart> carts;
+    private String publicationYear;
+    private GameType type;
+    private Rent rent;
 
-    public Game(String gameName, String description, double price) {
-        this.gameName = gameName;
-        this.description = description;
+
+    public Game(String title, double price, String publicationYear, GameType type) {
+        this.title = title;
         this.price = price;
+        this.publicationYear = publicationYear;
+        this.type = type;
     }
 
     @Id
@@ -38,15 +41,9 @@ public class Game {
     }
 
     @NonNull
-    @Column(name = "GAME_NAME")
-    public String getGameName() {
-        return gameName;
-    }
-
-    @NonNull
-    @Column(name = "DESCRIPTION")
-    public String getDescription() {
-        return description;
+    @Column(name = "TITLE")
+    public String getTitle() {
+        return title;
     }
 
     @NonNull
@@ -55,18 +52,19 @@ public class Game {
         return price;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "games")
-    public List<User> getUsers() {
-        return users;
+    @NonNull
+    @Column(name = "PUBLICATION_YEAR")
+    public String getPublicationYear() {
+        return publicationYear;
+    }
+    @NonNull
+    @Column(name = "TYPE")
+    public GameType getType() {
+        return type;
     }
 
-    @OneToMany(
-            targetEntity = Cart.class,
-            mappedBy = "game",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    public List<Cart> getCarts() {
-        return carts;
+    @OneToOne(mappedBy = "game")
+    public Rent getRent() {
+        return rent;
     }
 }
