@@ -19,6 +19,8 @@ public class GameController {
     private final GameService service;
     private final GameMapper gameMapper;
 
+
+
     @GetMapping
     public ResponseEntity<List<GameDto>> getGames(){
         List<Game> games = service.getAllGames();

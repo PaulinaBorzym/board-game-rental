@@ -6,15 +6,17 @@ import com.project.exeption.GameNotFoundException;
 import com.project.exeption.UserNotFoundException;
 import com.project.repository.GameRepository;
 import com.project.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepository repository;
+    private UserRepository repository;
 
     public List<User> getAllUsers(){
         return repository.findAll();

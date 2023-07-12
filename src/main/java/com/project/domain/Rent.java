@@ -31,13 +31,14 @@ public class Rent {
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER_ID",referencedColumnName = "USER_ID")
     public User getUser() {
         return user;
     }
 
     @Id
     @GeneratedValue
+    @NonNull
     @Column(name = "ID", unique = true)
     public Long getId() {
         return id;

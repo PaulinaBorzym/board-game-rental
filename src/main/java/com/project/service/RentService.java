@@ -3,14 +3,16 @@ package com.project.service;
 import com.project.domain.Rent;
 import com.project.exeption.RentNotFoundException;
 import com.project.repository.RentRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class RentService {
-    private final RentRepository repository;
+    private  RentRepository repository;
 
     public List<Rent> getAllRents() {
         return repository.findAll();

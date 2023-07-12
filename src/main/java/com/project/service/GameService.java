@@ -3,15 +3,22 @@ package com.project.service;
 import com.project.domain.Game;
 import com.project.exeption.GameNotFoundException;
 import com.project.repository.GameRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class GameService {
-    private final GameRepository repository;
+
+    private GameRepository repository;
+
+    @Autowired
+    public GameService(GameRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Game> getAllGames(){
         return repository.findAll();
