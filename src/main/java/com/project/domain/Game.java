@@ -65,7 +65,7 @@ public class Game {
     }
 
     @OneToOne(mappedBy = "game")
-    @JsonManagedReference
+    @JsonManagedReference(value = "GameReference")
     public Rent getRent() {
         return rent;
     }

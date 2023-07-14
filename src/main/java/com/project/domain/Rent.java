@@ -10,7 +10,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "GAME_RENTS")
@@ -23,7 +22,8 @@ public class Rent {
     private double price;
 
 
-    public Rent(User user, Game game, LocalDate startDate, LocalDate endDate, double price) {
+    public Rent(Long rentId, User user, Game game, LocalDate startDate, LocalDate endDate, double price) {
+        this.rentId = rentId;
         this.user = user;
         this.game = game;
         this.startDate = startDate;
@@ -33,7 +33,7 @@ public class Rent {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "USER_ID",referencedColumnName = "USER_ID")
-    @JsonBackReference
+    @JsonBackReference(value = "UserReference")
     public User getUser() {
         return user;
     }
@@ -48,7 +48,7 @@ public class Rent {
 
     @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "GAME_ID")
-    @JsonBackReference
+    @JsonBackReference(value = "GameReference")
     public Game getGame() {
         return game;
     }

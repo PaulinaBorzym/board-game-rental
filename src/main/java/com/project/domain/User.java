@@ -1,5 +1,6 @@
 package com.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -65,7 +66,8 @@ public class User {
         return phoneNumber;
     }
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "UserReference")
+    @JsonIgnore
     @OneToMany(
             targetEntity = Rent.class,
             mappedBy = "user",

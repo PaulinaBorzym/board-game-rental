@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 public class RentDto {
-    private Long id;
+    private Long rentId;
     private User user;
     private Game game;
     private LocalDate startDate;

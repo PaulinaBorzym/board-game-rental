@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class RentMapper {
     public Rent mapToRent(final RentDto rentDto) {
         return new Rent(
+                rentDto.getRentId(),
                 rentDto.getUser(),
                 rentDto.getGame(),
                 rentDto.getStartDate(),
