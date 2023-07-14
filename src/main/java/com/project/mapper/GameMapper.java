@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class GameMapper {
     public Game mapToGame(final GameDto gameDto) {
         return new Game(
+                gameDto.getGameId(),
                 gameDto.getTitle(),
                 gameDto.getPrice(),
                 gameDto.getPublicationYear(),

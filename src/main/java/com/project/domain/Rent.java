@@ -1,5 +1,6 @@
 package com.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -12,9 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "RENTS")
+@Table(name = "GAME_RENTS")
 public class Rent {
-    private Long id;
+    private Long rentId;
     private User user;
     private Game game;
     private LocalDate startDate;
@@ -30,8 +31,9 @@ public class Rent {
         this.price = price;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "USER_ID",referencedColumnName = "USER_ID")
+    @JsonBackReference
     public User getUser() {
         return user;
     }
@@ -39,13 +41,14 @@ public class Rent {
     @Id
     @GeneratedValue
     @NonNull
-    @Column(name = "ID", unique = true)
-    public Long getId() {
-        return id;
+    @Column(name = "RENT_ID", unique = true)
+    public Long getRentId() {
+        return rentId;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "GAME_ID")
+    @JsonBackReference
     public Game getGame() {
         return game;
     }

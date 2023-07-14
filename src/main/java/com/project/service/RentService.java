@@ -5,14 +5,18 @@ import com.project.exeption.RentNotFoundException;
 import com.project.repository.RentRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class RentService {
     private  RentRepository repository;
+
+    @Autowired
+    public RentService(RentRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Rent> getAllRents() {
         return repository.findAll();

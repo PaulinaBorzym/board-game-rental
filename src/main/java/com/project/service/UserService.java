@@ -8,15 +8,20 @@ import com.project.repository.GameRepository;
 import com.project.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
-@RequiredArgsConstructor
+
 public class UserService {
+    @Autowired
     private UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
 
     public List<User> getAllUsers(){
         return repository.findAll();

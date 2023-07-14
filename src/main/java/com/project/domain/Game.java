@@ -1,5 +1,6 @@
 package com.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.enums.GameType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,8 @@ public class Game {
     private Rent rent;
 
 
-    public Game(String title, double price, String publicationYear, GameType type) {
+    public Game(Long gameId,String title, double price, String publicationYear, GameType type) {
+        this.gameId = gameId;
         this.title = title;
         this.price = price;
         this.publicationYear = publicationYear;
@@ -63,6 +65,7 @@ public class Game {
     }
 
     @OneToOne(mappedBy = "game")
+    @JsonManagedReference
     public Rent getRent() {
         return rent;
     }

@@ -21,7 +21,7 @@ public class RentMapper {
 
     public RentDto mapToRentDto(final Rent rent) {
         return new RentDto(
-                rent.getId(),
+                rent.getRentId(),
                 rent.getUser(),
                 rent.getGame(),
                 rent.getStartDate(),

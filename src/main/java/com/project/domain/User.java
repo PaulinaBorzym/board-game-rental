@@ -1,5 +1,6 @@
 package com.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,8 @@ public class User {
 
     private List<Rent> rentList;
 
-    public User(String firstName, String lastName, String email, String phoneNumber) {
+    public User(Long userId, String firstName, String lastName, String email, String phoneNumber) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -57,11 +59,13 @@ public class User {
     }
 
     @NonNull
+
     @Column(name = "PHONE_NUMBER")
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    @JsonManagedReference
     @OneToMany(
             targetEntity = Rent.class,
             mappedBy = "user",
