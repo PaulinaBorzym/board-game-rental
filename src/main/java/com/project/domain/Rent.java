@@ -69,4 +69,16 @@ public class Rent {
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "Rent{" +
+                "rentId=" + rentId +
+                ", userPhone=" + user.getPhoneNumber() +
+                ", gameTitle=" + game.getTitle() +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", price=" + price +
+                '}';
+    }
 }

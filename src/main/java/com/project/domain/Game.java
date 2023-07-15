@@ -79,4 +79,16 @@ public class Game {
         return description;
     }
 
+    @Override
+    public String toString() {
+        return "Game{" +
+                "gameId=" + gameId +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", publicationYear='" + publicationYear + '\'' +
+                ", type=" + type +
+                ", rent=" + rent +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

@@ -37,7 +37,7 @@ public class CurrencyService {
         return repository.findByCurrencyCode(code).orElseThrow(CurrencyNotFoundException::new);
     }
 
-    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(cron = "0 0 1 * * *")
     public void getFromAPI() throws CurrencyNotFoundException {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> rs = restTemplate.getForEntity("https://open.er-api.com/v6/latest/PLN", String.class);

@@ -3,7 +3,9 @@ package com.project.controller;
 import com.project.domain.Game;
 import com.project.domain.Rent;
 import com.project.domain.User;
+import com.project.enums.CurrencyValue;
 import com.project.service.StatisticService;
+import com.project.utils.MathUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -81,7 +83,7 @@ public class StatisticController {
         for(Rent rent : rents) {
             sum += rent.getPrice();
         }
-        return ResponseEntity.ok(sum);
+        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum* CurrencyValue.INSTANCE.getValue()));
     }
 
     @GetMapping(value = "/numberOfLastMonthEarnedMoney", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -98,7 +100,7 @@ public class StatisticController {
                 sum += rent.getPrice();
             }
         }
-        return ResponseEntity.ok(sum);
+        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum* CurrencyValue.INSTANCE.getValue()));
     }
 
     @GetMapping(value = "/numberOfLastWeekEarnedMoney", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -115,6 +117,6 @@ public class StatisticController {
                 sum += rent.getPrice();
             }
         }
-        return ResponseEntity.ok(sum);
+        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum* CurrencyValue.INSTANCE.getValue()));
     }
 }
