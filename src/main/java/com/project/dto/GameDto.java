@@ -12,4 +12,5 @@ public class GameDto {
     private double price;
     private String publicationYear;
     private GameType type;
+    private String description;
 }

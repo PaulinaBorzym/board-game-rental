@@ -2,6 +2,8 @@ package com.project.mapper;
 
 import com.project.domain.Rent;
 import com.project.dto.RentDto;
+import com.project.enums.CurrencyValue;
+import com.project.utils.MathUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class RentMapper {
                 rentDto.getGame(),
                 rentDto.getStartDate(),
                 rentDto.getEndDate(),
-                rentDto.getPrice()
+                MathUtils.roundToTwoDecimals(rentDto.getPrice()/CurrencyValue.INSTANCE.getValue())
         );
     }
 
@@ -27,7 +29,7 @@ public class RentMapper {
                 rent.getGame(),
                 rent.getStartDate(),
                 rent.getEndDate(),
-                rent.getPrice()
+                MathUtils.roundToTwoDecimals(rent.getPrice()*CurrencyValue.INSTANCE.getValue())
         );
     }
 

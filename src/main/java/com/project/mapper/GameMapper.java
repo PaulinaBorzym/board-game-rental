@@ -2,6 +2,8 @@ package com.project.mapper;
 
 import com.project.domain.Game;
 import com.project.dto.GameDto;
+import com.project.enums.CurrencyValue;
+import com.project.utils.MathUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +15,10 @@ public class GameMapper {
         return new Game(
                 gameDto.getGameId(),
                 gameDto.getTitle(),
-                gameDto.getPrice(),
+                MathUtils.roundToTwoDecimals(gameDto.getPrice()/CurrencyValue.INSTANCE.getValue()),
                 gameDto.getPublicationYear(),
-                gameDto.getType()
+                gameDto.getType(),
+                gameDto.getDescription()
         );
     }
 
@@ -23,9 +26,10 @@ public class GameMapper {
         return new GameDto(
                 game.getGameId(),
                 game.getTitle(),
-                game.getPrice(),
+                MathUtils.roundToTwoDecimals(game.getPrice()*CurrencyValue.INSTANCE.getValue()),
                 game.getPublicationYear(),
-                game.getType()
+                game.getType(),
+                game.getDescription()
         );
     }
     public List<GameDto> mapToGameDtoList(final List<Game> gameList){

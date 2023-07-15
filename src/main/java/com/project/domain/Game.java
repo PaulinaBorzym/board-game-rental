@@ -24,13 +24,16 @@ public class Game {
     private GameType type;
     private Rent rent;
 
+    private String description;
 
-    public Game(Long gameId,String title, double price, String publicationYear, GameType type) {
+
+    public Game(Long gameId,String title, double price, String publicationYear, GameType type, String description) {
         this.gameId = gameId;
         this.title = title;
         this.price = price;
         this.publicationYear = publicationYear;
         this.type = type;
+        this.description = description;
     }
 
     @Id
@@ -69,4 +72,11 @@ public class Game {
     public Rent getRent() {
         return rent;
     }
+
+    @NonNull
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+        return description;
+    }
+
 }

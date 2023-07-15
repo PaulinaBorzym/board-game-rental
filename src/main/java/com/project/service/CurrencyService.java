@@ -5,16 +5,19 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.project.domain.Currency;
 import com.project.enums.SupportedCurrencies;
+import com.project.exeption.CurrencyNotFoundException;
+import com.project.exeption.GameNotFoundException;
 import com.project.repository.CurrencyRepository;
-import com.project.utils.OpenErSchema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -30,7 +33,12 @@ public class CurrencyService {
         return repository.findAll();
     }
 
-    public void getFromAPI(){
+    public Currency getCurrencyByCode(String code) throws CurrencyNotFoundException{
+        return repository.findByCurrencyCode(code).orElseThrow(CurrencyNotFoundException::new);
+    }
+
+    @Scheduled(cron = "0 0 10 * * *")
+    public void getFromAPI() throws CurrencyNotFoundException {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> rs = restTemplate.getForEntity("https://open.er-api.com/v6/latest/PLN", String.class);
         JsonParser jp = new JsonParser();
@@ -38,11 +46,19 @@ public class CurrencyService {
         JsonElement je = jp.parse(new InputStreamReader(inputStream));
         JsonObject object = je.getAsJsonObject();
         saveAllCurrencies(object.get("rates").getAsJsonObject());
-        Double aaa = object.get("rates").getAsJsonObject().get("USD").getAsDouble();
-        System.out.println("Bla");
     }
 
-    private void saveAllCurrencies(JsonObject rates) {
+    private void saveAllCurrencies(JsonObject rates) throws CurrencyNotFoundException {
+        List<Currency> currencies = getAllCurrencies();
+        if (currencies.size() == 3){
+            for (SupportedCurrencies currency : SupportedCurrencies.values()){
+                Double value = rates.get(currency.name()).getAsDouble();
+                Currency currentCurrency = getCurrencyByCode(currency.name());
+                currentCurrency.setValue(value);
+                repository.save(currentCurrency);
+            }
+            return;
+        }
         for (SupportedCurrencies currency : SupportedCurrencies.values()){
             Double value = rates.get(currency.name()).getAsDouble();
             repository.save(new Currency(currency.name(),value));
