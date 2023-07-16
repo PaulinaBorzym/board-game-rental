@@ -14,16 +14,17 @@ import java.util.stream.Collectors;
 @Service
 public class MonthStatisticMapper {
     public MonthStatisticDto mapToMonthStatisticDto(final MonthStatistic monthStatistic){
-        return new MonthStatisticDto(
-                monthStatistic.getStatisticId(),
-                monthStatistic.getMonth(),
-                monthStatistic.getYear(),
-                monthStatistic.getNumberOfUsers(),
-                monthStatistic.getNumberOfGames(),
-                monthStatistic.getNumberOfAllRents(),
-                monthStatistic.getNumberOfLastMonthRents(),
-                MathUtils.roundToTwoDecimals(monthStatistic.getAmountOfLastMonthEarnedMoney()*CurrencyValue.INSTANCE.getValue())
-        );
+        return MonthStatisticDto.builder()
+                        .statisticId(monthStatistic.getStatisticId())
+                .month(monthStatistic.getMonth())
+                .year(monthStatistic.getYear())
+                .numberOfUsers(monthStatistic.getNumberOfUsers())
+                .numberOfGames(monthStatistic.getNumberOfGames())
+                .numberOfAllRents(monthStatistic.getNumberOfAllRents())
+                .numberOfLastMonthRents(monthStatistic.getNumberOfLastMonthRents())
+                .amountOfLastMonthEarnedMoney(MathUtils.roundToTwoDecimals(
+                        monthStatistic.getAmountOfLastMonthEarnedMoney()*CurrencyValue.INSTANCE.getValue()))
+                .build();
     }
     public List<MonthStatisticDto> mapToMonthStatisticDtoList(final List<MonthStatistic> monthStatisticsList){
         return monthStatisticsList.stream()

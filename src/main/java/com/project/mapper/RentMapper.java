@@ -23,14 +23,14 @@ public class RentMapper {
     }
 
     public RentDto mapToRentDto(final Rent rent) {
-        return new RentDto(
-                rent.getRentId(),
-                rent.getUser(),
-                rent.getGame(),
-                rent.getStartDate(),
-                rent.getEndDate(),
-                MathUtils.roundToTwoDecimals(rent.getPrice()*CurrencyValue.INSTANCE.getValue())
-        );
+        return  RentDto.builder()
+                .rentId(rent.getRentId())
+                .user(rent.getUser())
+                .game(rent.getGame())
+                .startDate(rent.getStartDate())
+                .endDate(rent.getEndDate())
+                .price( MathUtils.roundToTwoDecimals(rent.getPrice()*CurrencyValue.INSTANCE.getValue()))
+                .build();
     }
 
     public List<RentDto> mapToRentDtoList(final List<Rent> rentList) {

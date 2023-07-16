@@ -23,14 +23,14 @@ public class GameMapper {
     }
 
     public GameDto mapToGameDto(final Game game){
-        return new GameDto(
-                game.getGameId(),
-                game.getTitle(),
-                MathUtils.roundToTwoDecimals(game.getPrice()*CurrencyValue.INSTANCE.getValue()),
-                game.getPublicationYear(),
-                game.getType(),
-                game.getDescription()
-        );
+        return  GameDto.builder()
+                .gameId(game.getGameId())
+                .title(game.getTitle())
+                .price(MathUtils.roundToTwoDecimals(game.getPrice()*CurrencyValue.INSTANCE.getValue()))
+                .publicationYear(game.getPublicationYear())
+                .type(game.getType())
+                .description(game.getDescription())
+                .build();
     }
     public List<GameDto> mapToGameDtoList(final List<Game> gameList){
         return gameList.stream()

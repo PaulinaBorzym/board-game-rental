@@ -19,13 +19,13 @@ public class UserMapper {
         );
     }
     public UserDto mapToUserDto(final User user) {
-        return new UserDto(
-                user.getUserId(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail(),
-                user.getPhoneNumber()
-        );
+        return UserDto.builder()
+                .userId(user.getUserId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .phoneNumber(user.getPhoneNumber())
+                .build();
     }
     public List<UserDto> mapToUserDtoList (final List<User> userList){
         return userList.stream()
