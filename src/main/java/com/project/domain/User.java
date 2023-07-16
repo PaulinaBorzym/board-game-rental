@@ -25,6 +25,13 @@ public class User {
 
     private List<Rent> rentList;
 
+    public User(String firstName, String lastName, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     public User(Long userId, String firstName, String lastName, String email, String phoneNumber) {
         this.userId = userId;
         this.firstName = firstName;

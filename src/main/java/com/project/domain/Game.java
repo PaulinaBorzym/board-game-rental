@@ -27,7 +27,15 @@ public class Game {
     private String description;
 
 
-    public Game(Long gameId,String title, double price, String publicationYear, GameType type, String description) {
+    public Game(String title, double price, String publicationYear, GameType type, String description) {
+        this.title = title;
+        this.price = price;
+        this.publicationYear = publicationYear;
+        this.type = type;
+        this.description = description;
+    }
+
+    public Game(Long gameId, String title, double price, String publicationYear, GameType type, String description) {
         this.gameId = gameId;
         this.title = title;
         this.price = price;

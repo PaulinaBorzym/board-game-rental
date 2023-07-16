@@ -21,6 +21,12 @@ public class Rent {
     private LocalDate endDate;
     private double price;
 
+    public Rent(User user, Game game, LocalDate startDate, LocalDate endDate) {
+        this.user = user;
+        this.game = game;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     public Rent(Long rentId, User user, Game game, LocalDate startDate, LocalDate endDate, double price) {
         this.rentId = rentId;

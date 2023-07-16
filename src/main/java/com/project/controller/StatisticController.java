@@ -69,7 +69,8 @@ public class StatisticController {
 
         for (Rent rent : rents) {
             LocalDate rentDate = rent.getStartDate();
-            if (rentDate.isAfter(lastWeekStartDate) && rentDate.isBefore(lastWeekEndDate.plusDays(1))) {
+            if ((rentDate.isAfter(lastWeekStartDate) || rentDate.equals(lastWeekStartDate))
+                    && rentDate.isBefore(lastWeekEndDate.plusDays(1))) {
                 lastMonthRents.add(rent);
             }
         }
@@ -113,7 +114,8 @@ public class StatisticController {
 
         for (Rent rent : rents) {
             LocalDate rentDate = rent.getStartDate();
-            if (rentDate.isAfter(lastWeekStartDate) && rentDate.isBefore(lastWeekEndDate.plusDays(1))) {
+            if ((rentDate.isAfter(lastWeekStartDate) || rentDate.equals(lastWeekStartDate))
+                    && rentDate.isBefore(lastWeekEndDate.plusDays(1))) {
                 sum += rent.getPrice();
             }
         }
