@@ -25,7 +25,6 @@ public class GameController {
     @GetMapping
     public ResponseEntity<List<GameDto>> getGames(){
         List<Game> games = service.getAllGames();
-        List<GameDto> aaa = gameMapper.mapToGameDtoList(games);
         return ResponseEntity.ok(gameMapper.mapToGameDtoList(games));
     }
 
