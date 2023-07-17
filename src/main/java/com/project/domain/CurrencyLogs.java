@@ -1,13 +1,14 @@
 package com.project.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "CURRENCY_LOGS")
@@ -17,14 +18,6 @@ public class CurrencyLogs {
     private double PLN;
     private double EUR;
     private double USD;
-
-    public CurrencyLogs(Long currencyLoggerId, LocalDateTime timeStamp, double PLN, double EUR, double USD) {
-        this.currencyLoggerId = currencyLoggerId;
-        this.timeStamp = timeStamp;
-        this.PLN = PLN;
-        this.EUR = EUR;
-        this.USD = USD;
-    }
 
     @Id
     @GeneratedValue

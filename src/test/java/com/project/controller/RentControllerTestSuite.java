@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +58,6 @@ public class RentControllerTestSuite {
         List<Rent> rentList = new ArrayList<>();
         rentList.add(rent1);
         rentList.add(rent2);
-
         RentDto rentDto1 = new RentDto();
         rentDto1.setRentId(1L);
         RentDto rentDto2 = new RentDto();
@@ -88,7 +86,6 @@ public class RentControllerTestSuite {
         Long rentId = 1L;
         Rent rent = new Rent();
         rent.setRentId(rentId);
-
         RentDto rentDto = new RentDto();
         rentDto.setRentId(rentId);
 
@@ -107,7 +104,7 @@ public class RentControllerTestSuite {
     }
 
     @Test
-    public void ShouldSaveNewRent() throws Exception {
+    public void shouldSaveNewRent() throws Exception {
         //Given
         RentDto rentDto = new RentDto();
         Rent rent = new Rent();

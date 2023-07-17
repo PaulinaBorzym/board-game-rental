@@ -7,12 +7,12 @@ import com.project.domain.Currency;
 import com.project.enums.SupportedCurrencies;
 import com.project.exeption.CurrencyNotFoundException;
 import com.project.repository.CurrencyRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -35,6 +35,7 @@ public class CurrencyService {
         return repository.findByCurrencyCode(code).orElseThrow(CurrencyNotFoundException::new);
     }
 
+    @PostConstruct
     @Scheduled(cron = "0 0 1 * * *")
     public void getFromAPI() throws CurrencyNotFoundException {
         RestTemplate restTemplate = new RestTemplate();

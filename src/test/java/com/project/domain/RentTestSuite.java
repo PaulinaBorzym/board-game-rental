@@ -7,7 +7,6 @@ import com.project.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +49,8 @@ public class RentTestSuite {
     void shouldFindAllRents() {
         //Given
         Game game = new Game("Kalambury", 10, "2015", GameType.FAMILY, "Fajna gra");
-        Game game2 = new Game("Grzybobranie", 10, "2009", GameType.FOR_KIDS, "Zbierasz grzyby");
+        Game game2 = new Game("Grzybobranie", 10, "2009", GameType.FOR_KIDS,
+                "Zbierasz grzyby");
         gameRepository.save(game);
         gameRepository.save(game2);
         User user = new User("Ania", "Kania", "kania@ania", "55555");

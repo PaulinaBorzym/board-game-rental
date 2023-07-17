@@ -20,7 +20,6 @@ public class DescriptionController {
     public ResponseEntity<String> getDescription(
             @RequestParam(value = "language") String language,
             @RequestParam(value = "description") String description) throws IOException {
-        String result = service.getDescription(language, description);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(service.getDescription(language, description));
     }
 }

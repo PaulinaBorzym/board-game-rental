@@ -13,12 +13,13 @@ import java.util.List;
 
 @Service
 public class StatisticService {
-    GameRepository gameRepository;
-    RentRepository rentRepository;
-    UserRepository userRepository;
+    private GameRepository gameRepository;
+    private RentRepository rentRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public StatisticService(GameRepository gameRepository, RentRepository rentRepository, UserRepository userRepository) {
+    public StatisticService(GameRepository gameRepository, RentRepository rentRepository,
+                            UserRepository userRepository) {
         this.gameRepository = gameRepository;
         this.rentRepository = rentRepository;
         this.userRepository = userRepository;
@@ -36,4 +37,3 @@ public class StatisticService {
         return userRepository.findAll();
     }
 }
-

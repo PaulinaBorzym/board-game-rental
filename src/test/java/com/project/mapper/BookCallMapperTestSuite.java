@@ -4,7 +4,6 @@ import com.project.domain.BookCall;
 import com.project.dto.BookCallDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class BookCallMapperTestSuite {
-
     private BookCallMapper bookCallMapper = new BookCallMapper();
 
     @Test
@@ -55,7 +53,6 @@ public class BookCallMapperTestSuite {
                 "78945", "Kalambury");
         BookCall bookCall2 = new BookCall(2L, LocalDate.of(2023, 7, 21),
                 "12345", "Kalambury");
-
         List<BookCall> bookCallList = Arrays.asList(bookCall1, bookCall2);
 
         // When
@@ -63,7 +60,6 @@ public class BookCallMapperTestSuite {
 
         // Then
         assertEquals(bookCallList.size(), bookCallDtoList.size());
-
         for (int i = 0; i < bookCallList.size(); i++) {
             BookCall bookCall = bookCallList.get(i);
             BookCallDto bookCallDto = bookCallDtoList.get(i);
@@ -75,4 +71,3 @@ public class BookCallMapperTestSuite {
         }
     }
 }
-

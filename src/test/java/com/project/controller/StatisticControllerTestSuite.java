@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,9 @@ public class StatisticControllerTestSuite {
         List<User> users = new ArrayList<>();
         users.add(new User());
         users.add(new User());
+
         when(statisticService.getAllUsers()).thenReturn(users);
+
         // When
         ResponseEntity<Integer> responseEntity = statisticController.getNumberOfUsers();
 
@@ -49,6 +50,7 @@ public class StatisticControllerTestSuite {
         List<Game> games = new ArrayList<>();
         games.add(new Game());
         games.add(new Game());
+
         when(statisticService.getAllGames()).thenReturn(games);
 
         // When
@@ -65,6 +67,7 @@ public class StatisticControllerTestSuite {
         List<Rent> rents = new ArrayList<>();
         rents.add(new Rent());
         rents.add(new Rent());
+
         when(statisticService.getAllRents()).thenReturn(rents);
 
         // When
@@ -82,6 +85,7 @@ public class StatisticControllerTestSuite {
         rents.add(createRent(LocalDate.now().minusMonths(1)));
         rents.add(createRent(LocalDate.now().minusMonths(1)));
         rents.add(createRent(LocalDate.now()));
+
         when(statisticService.getAllRents()).thenReturn(rents);
 
         // When
@@ -99,6 +103,7 @@ public class StatisticControllerTestSuite {
         rents.add(createRent(LocalDate.now().minusWeeks(1)));
         rents.add(createRent(LocalDate.now().minusWeeks(1)));
         rents.add(createRent(LocalDate.now()));
+
         when(statisticService.getAllRents()).thenReturn(rents);
 
         // When
@@ -115,6 +120,7 @@ public class StatisticControllerTestSuite {
         List<Rent> rents = new ArrayList<>();
         rents.add(createRentWithPrice(10.0));
         rents.add(createRentWithPrice(20.0));
+
         when(statisticService.getAllRents()).thenReturn(rents);
 
         // When
@@ -132,6 +138,7 @@ public class StatisticControllerTestSuite {
         rents.add(createRentWithPriceAndStartDate(LocalDate.now().minusMonths(1), 10.0));
         rents.add(createRentWithPriceAndStartDate(LocalDate.now().minusMonths(1), 20.0));
         rents.add(createRentWithPriceAndStartDate(LocalDate.now(), 30.0));
+
         when(statisticService.getAllRents()).thenReturn(rents);
 
         // When
@@ -149,6 +156,7 @@ public class StatisticControllerTestSuite {
         rents.add(createRentWithPriceAndStartDate(LocalDate.now().minusWeeks(1), 10.0));
         rents.add(createRentWithPriceAndStartDate(LocalDate.now().minusWeeks(1), 20.0));
         rents.add(createRentWithPriceAndStartDate(LocalDate.now(), 30.0));
+
         when(statisticService.getAllRents()).thenReturn(rents);
 
         // When

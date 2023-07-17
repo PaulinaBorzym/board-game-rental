@@ -1,14 +1,15 @@
 package com.project.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "GAME_LOGS")
 public class GameLogs {
@@ -17,14 +18,6 @@ public class GameLogs {
     private String typeOfOperation;
     private String previousValue;
     private String newValue;
-
-    public GameLogs(Long gameLoggerId, LocalDateTime timeStamp, String typeOfOperation, String previousValue, String newValue) {
-        this.gameLoggerId = gameLoggerId;
-        this.timeStamp = timeStamp;
-        this.typeOfOperation = typeOfOperation;
-        this.previousValue = previousValue;
-        this.newValue = newValue;
-    }
 
     @Id
     @GeneratedValue

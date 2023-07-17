@@ -7,7 +7,6 @@ import com.project.enums.GameType;
 import com.project.utils.MathUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class GameMapperTestSuite {
-
     private GameMapper gameMapper = new GameMapper();
 
     @Test
@@ -63,7 +61,6 @@ public class GameMapperTestSuite {
                 GameType.FAMILY, "Fajna gra");
         Game game2 = new Game(2L, "Grzybobranie", 10, "2009",
                 GameType.FOR_KIDS, "Zbierasz grzyby");
-
         List<Game> gameList = Arrays.asList(game1, game2);
 
         // When
@@ -71,7 +68,6 @@ public class GameMapperTestSuite {
 
         // Then
         assertEquals(gameList.size(), gameDtoList.size());
-
         for (int i = 0; i < gameList.size(); i++) {
             Game game = gameList.get(i);
             GameDto gameDto = gameDtoList.get(i);
@@ -86,4 +82,3 @@ public class GameMapperTestSuite {
         }
     }
 }
-

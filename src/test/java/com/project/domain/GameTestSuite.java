@@ -5,7 +5,6 @@ import com.project.repository.GameRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,8 @@ public class GameTestSuite {
         //Given
         List<Game> gameList = new ArrayList<>();
         Game game = new Game("Kalambury", 10, "2015", GameType.FAMILY, "Fajna gra");
-        Game game2 = new Game("Grzybobranie", 10, "2009", GameType.FOR_KIDS, "Zbierasz grzyby");
+        Game game2 = new Game("Grzybobranie", 10, "2009", GameType.FOR_KIDS,
+                "Zbierasz grzyby");
         gameList.add(game);
         gameList.add(game2);
 

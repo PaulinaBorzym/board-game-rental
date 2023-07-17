@@ -6,7 +6,6 @@ import com.project.enums.CurrencyValue;
 import com.project.utils.MathUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,13 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class MonthStatisticMapperTestSuite {
-
     private MonthStatisticMapper monthStatisticMapper = new MonthStatisticMapper();
 
     @Test
     public void shouldMapMonthStatisticToMonthStatisticDto() {
         // Given
-
         MonthStatistic monthStatistic = new MonthStatistic(1L, "Jun", "2023", 251,
                 60, 150, 67, 3200);
 
@@ -46,7 +43,6 @@ public class MonthStatisticMapperTestSuite {
                 60, 150, 67, 3200);
         MonthStatistic monthStatistic2 = new MonthStatistic(2L, "August", "2023", 290,
                 80, 190, 87, 4200);
-
         List<MonthStatistic> monthStatisticsList = Arrays.asList(monthStatistic1, monthStatistic2);
 
         // When
@@ -55,7 +51,6 @@ public class MonthStatisticMapperTestSuite {
 
         // Then
         assertEquals(monthStatisticsList.size(), monthStatisticDtoList.size());
-
         for (int i = 0; i < monthStatisticsList.size(); i++) {
             MonthStatistic monthStatistic = monthStatisticsList.get(i);
             MonthStatisticDto monthStatisticDto = monthStatisticDtoList.get(i);
@@ -72,4 +67,3 @@ public class MonthStatisticMapperTestSuite {
         }
     }
 }
-

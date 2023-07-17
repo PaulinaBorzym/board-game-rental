@@ -48,4 +48,3 @@ public class DescriptionControllerTestSuite {
                 .andExpect(content().string(expectedResponse));
     }
 }
-

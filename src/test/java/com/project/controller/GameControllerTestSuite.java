@@ -85,7 +85,6 @@ public class GameControllerTestSuite {
         Long gameId = 1L;
         Game game = new Game();
         game.setGameId(gameId);
-
         GameDto gameDto = new GameDto();
         gameDto.setGameId(gameId);
 
@@ -161,4 +160,3 @@ public class GameControllerTestSuite {
         assertThat(result.getResponse().getContentAsString()).isEmpty();
     }
 }
-

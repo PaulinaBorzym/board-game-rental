@@ -4,7 +4,6 @@ import com.project.domain.User;
 import com.project.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +16,8 @@ public class UserMapperTestSuite {
     @Test
     public void shouldMapUserDtoToUser() {
         // Given
-        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania", "55555");
+        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania",
+                "55555");
 
         // When
         User user = userMapper.mapToUser(userDto);
@@ -51,15 +51,13 @@ public class UserMapperTestSuite {
         // Given
         List<User> userList = Arrays.asList(
                 new User(1L, "Ania", "Kania", "kania@ania", "55555"),
-                new User(2L, "Hania", "Bania", "bania@hania", "465613")
-        );
+                new User(2L, "Hania", "Bania", "bania@hania", "465613"));
 
         // When
         List<UserDto> userDtoList = userMapper.mapToUserDtoList(userList);
 
         // Then
         assertEquals(userList.size(), userDtoList.size());
-
         for (int i = 0; i < userList.size(); i++) {
             User user = userList.get(i);
             UserDto userDto = userDtoList.get(i);
@@ -72,4 +70,3 @@ public class UserMapperTestSuite {
         }
     }
 }
-

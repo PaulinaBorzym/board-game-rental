@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -65,7 +64,6 @@ public class StatisticController {
         LocalDate currentDate = LocalDate.now();
         LocalDate lastWeekStartDate = currentDate.minus(1, ChronoUnit.WEEKS);
         LocalDate lastWeekEndDate = currentDate.minus(1, ChronoUnit.DAYS);
-
         for (Rent rent : rents) {
             LocalDate rentDate = rent.getStartDate();
             if ((rentDate.isAfter(lastWeekStartDate) || rentDate.equals(lastWeekStartDate))
@@ -92,7 +90,6 @@ public class StatisticController {
         double sum = 0.0;
         LocalDate currentDate = LocalDate.now();
         int currentMonthValue = currentDate.getMonthValue();
-
         for (Rent rent : rents) {
             LocalDate rentDate = rent.getStartDate();
             int rentMonthValue = rentDate.getMonthValue();
@@ -110,7 +107,6 @@ public class StatisticController {
         LocalDate currentDate = LocalDate.now();
         LocalDate lastWeekStartDate = currentDate.minus(1, ChronoUnit.WEEKS);
         LocalDate lastWeekEndDate = currentDate.minus(1, ChronoUnit.DAYS);
-
         for (Rent rent : rents) {
             LocalDate rentDate = rent.getStartDate();
             if ((rentDate.isAfter(lastWeekStartDate) || rentDate.equals(lastWeekStartDate))

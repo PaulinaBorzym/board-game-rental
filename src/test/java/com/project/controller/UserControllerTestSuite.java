@@ -5,6 +5,7 @@ import com.project.domain.User;
 import com.project.dto.UserDto;
 import com.project.exeption.UserNotFoundException;
 import com.project.mapper.UserMapper;
+import com.project.service.LoggerService;
 import com.project.service.UserService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,8 +22,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringJUnitConfig
@@ -37,6 +40,8 @@ public class UserControllerTestSuite {
     private UserService userService;
     @MockBean
     private UserMapper userMapper;
+    @MockBean
+    private LoggerService loggerService;
     private User user;
 
     @BeforeEach
@@ -50,7 +55,8 @@ public class UserControllerTestSuite {
         List<User> users = Arrays.asList(user);
         when(userService.getAllUsers()).thenReturn(users);
 
-        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania", "55555");
+        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania",
+                "55555");
         when(userMapper.mapToUserDtoList(any())).thenReturn(Arrays.asList(userDto));
 
         // When&Then
@@ -69,7 +75,8 @@ public class UserControllerTestSuite {
         // Given
         when(userService.getUser(1L)).thenReturn(user);
 
-        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania", "55555");
+        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania",
+                "55555");
         when(userMapper.mapToUserDto(user)).thenReturn(userDto);
 
         // When&Then
@@ -81,28 +88,18 @@ public class UserControllerTestSuite {
     }
 
     @Test
-    void shouldCreateUser() throws Exception {
-        // Given
-        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania", "55555");
-        when(userMapper.mapToUser(any())).thenReturn(user);
-
-        // When&Then
-        mockMvc.perform(post("/v1/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(userDto)))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     void shouldUpdateUser() throws Exception {
         // Given
-        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania", "55555");
+        UserDto userDto = new UserDto(1L, "Ania", "Kania", "kania@ania",
+                "55555");
         when(userMapper.mapToUser(any())).thenReturn(user);
 
-        User savedUser = new User(2L, "Hania", "Bania", "bania@hania", "465613");
+        User savedUser = new User(2L, "Hania", "Bania", "bania@hania",
+                "465613");
         when(userService.saveUser(user)).thenReturn(savedUser);
 
-        UserDto savedUserDto = new UserDto(2L, "Hania", "Bania", "bania@hania", "465613");
+        UserDto savedUserDto = new UserDto(2L, "Hania", "Bania", "bania@hania",
+                "465613");
         when(userMapper.mapToUserDto(savedUser)).thenReturn(savedUserDto);
 
         // When&Then

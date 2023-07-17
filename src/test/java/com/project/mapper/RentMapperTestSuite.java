@@ -9,7 +9,6 @@ import com.project.enums.GameType;
 import com.project.utils.MathUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class RentMapperTestSuite {
-
     private RentMapper rentMapper = new RentMapper();
 
     @Test
@@ -27,7 +25,6 @@ public class RentMapperTestSuite {
         User user = new User(1L, "Ania", "Kania", "kania@ania", "55555");
         Game game = new Game(1L, "Kalambury", 10, "2015",
                 GameType.FAMILY, "Fajna gra");
-
         RentDto rentDto = new RentDto(1L, user, game, LocalDate.now(),
                 LocalDate.now().plusDays(7), 20);
 
@@ -50,7 +47,6 @@ public class RentMapperTestSuite {
         User user = new User(1L, "Ania", "Kania", "kania@ania", "55555");
         Game game = new Game(1L, "Kalambury", 10, "2015",
                 GameType.FAMILY, "Fajna gra");
-
         Rent rent = new Rent(1L, user, game, LocalDate.now(),
                 LocalDate.now().plusDays(7), 20);
 
@@ -76,12 +72,10 @@ public class RentMapperTestSuite {
                 GameType.FAMILY, "Fajna gra");
         Game game2 = new Game(2L, "Grzybobranie", 10, "2009",
                 GameType.FOR_KIDS, "Zbierasz grzyby");
-
         Rent rent1 = new Rent(1L, user, game, LocalDate.now(),
                 LocalDate.now().plusDays(7), 20);
         Rent rent2 = new Rent(2L, user2, game2, LocalDate.now(),
                 LocalDate.now().plusDays(4), 12);
-
         List<Rent> rentList = Arrays.asList(rent1, rent2);
 
         // When
@@ -89,7 +83,6 @@ public class RentMapperTestSuite {
 
         // Then
         assertEquals(rentList.size(), rentDtoList.size());
-
         for (int i = 0; i < rentList.size(); i++) {
             Rent rent = rentList.get(i);
             RentDto rentDto = rentDtoList.get(i);
@@ -104,4 +97,3 @@ public class RentMapperTestSuite {
         }
     }
 }
-
