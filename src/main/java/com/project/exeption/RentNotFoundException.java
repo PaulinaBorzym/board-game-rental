@@ -1,4 +1,4 @@
 package com.project.exeption;
 
-public class RentNotFoundException extends Throwable{
+public class RentNotFoundException extends Throwable {
 }

@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "GAME_LOGS")
 public class GameLogs {
-
     private Long gameLoggerId;
     private LocalDateTime timeStamp;
     private String typeOfOperation;
@@ -46,13 +45,14 @@ public class GameLogs {
     public String getTypeOfOperation() {
         return typeOfOperation;
     }
+
     @Column(name = "PREVIOUS_VALUE")
     public String getPreviousValue() {
         return previousValue;
     }
+
     @Column(name = "NEW_VALUE")
     public String getNewValue() {
         return newValue;
     }
-
 }

@@ -1,12 +1,7 @@
 package com.project.controller;
 
 import com.project.domain.BookCall;
-import com.project.domain.Game;
-import com.project.domain.Rent;
 import com.project.dto.BookCallDto;
-import com.project.dto.GameDto;
-import com.project.dto.RentDto;
-import com.project.enums.LogType;
 import com.project.mapper.BookCallMapper;
 import com.project.service.BookCallService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +19,7 @@ public class BookCallController {
     private final BookCallMapper bookCallMapper;
 
     @GetMapping
-    public ResponseEntity<List<BookCallDto>> getBookCall(){
+    public ResponseEntity<List<BookCallDto>> getBookCall() {
         List<BookCall> bookCalls = service.getAllBookCall();
         return ResponseEntity.ok(bookCallMapper.mapToBookCallDtoList(bookCalls));
     }

@@ -1,9 +1,7 @@
 package com.project.mapper;
 
 import com.project.domain.BookCall;
-import com.project.domain.Rent;
 import com.project.dto.BookCallDto;
-import com.project.dto.RentDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

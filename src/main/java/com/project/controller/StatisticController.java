@@ -22,28 +22,27 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("v1/statistic")
 public class StatisticController {
-
     private final StatisticService service;
 
-    @GetMapping(value = "/numberOfUsers", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Integer> getNumberOfUsers(){
+    @GetMapping(value = "/numberOfUsers", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Integer> getNumberOfUsers() {
         List<User> users = service.getAllUsers();
         return ResponseEntity.ok(users.size());
     }
 
-    @GetMapping(value = "/numberOfGames", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Integer> getNumberOfGames(){
+    @GetMapping(value = "/numberOfGames", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Integer> getNumberOfGames() {
         List<Game> games = service.getAllGames();
         return ResponseEntity.ok(games.size());
     }
 
-    @GetMapping(value = "/numberOfAllRents", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Integer> getNumberOfAllRents(){
+    @GetMapping(value = "/numberOfAllRents", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Integer> getNumberOfAllRents() {
         List<Rent> rents = service.getAllRents();
         return ResponseEntity.ok(rents.size());
     }
 
-    @GetMapping(value = "/numberOfLastMonthRents", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @GetMapping(value = "/numberOfLastMonthRents", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Integer> getNumberOfLastMonthRents() {
         List<Rent> rents = service.getAllRents();
         List<Rent> lastMonthRents = new ArrayList<>();
@@ -56,11 +55,11 @@ public class StatisticController {
                 lastMonthRents.add(rent);
             }
         }
-            return ResponseEntity.ok(lastMonthRents.size());
+        return ResponseEntity.ok(lastMonthRents.size());
     }
 
-    @GetMapping(value = "/numberOfLastWeekRents", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Integer> getNumberOfLastWeekRents(){
+    @GetMapping(value = "/numberOfLastWeekRents", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Integer> getNumberOfLastWeekRents() {
         List<Rent> rents = service.getAllRents();
         List<Rent> lastMonthRents = new ArrayList<>();
         LocalDate currentDate = LocalDate.now();
@@ -77,35 +76,35 @@ public class StatisticController {
         return ResponseEntity.ok(lastMonthRents.size());
     }
 
-    @GetMapping(value = "/numberOfAllEarnedMoney", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Double> getAmountOfAllEarnedMoney(){
+    @GetMapping(value = "/numberOfAllEarnedMoney", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Double> getAmountOfAllEarnedMoney() {
         List<Rent> rents = service.getAllRents();
         double sum = 0.0;
-        for(Rent rent : rents) {
+        for (Rent rent : rents) {
             sum += rent.getPrice();
         }
-        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum* CurrencyValue.INSTANCE.getValue()));
+        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum * CurrencyValue.INSTANCE.getValue()));
     }
 
-    @GetMapping(value = "/numberOfLastMonthEarnedMoney", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Double> getAmountOfLastMonthEarnedMoney(){
+    @GetMapping(value = "/numberOfLastMonthEarnedMoney", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Double> getAmountOfLastMonthEarnedMoney() {
         List<Rent> rents = service.getAllRents();
         double sum = 0.0;
         LocalDate currentDate = LocalDate.now();
         int currentMonthValue = currentDate.getMonthValue();
 
-        for (Rent rent : rents){
+        for (Rent rent : rents) {
             LocalDate rentDate = rent.getStartDate();
             int rentMonthValue = rentDate.getMonthValue();
             if (rentMonthValue == currentMonthValue - 1) {
                 sum += rent.getPrice();
             }
         }
-        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum* CurrencyValue.INSTANCE.getValue()));
+        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum * CurrencyValue.INSTANCE.getValue()));
     }
 
-    @GetMapping(value = "/numberOfLastWeekEarnedMoney", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Double> getAmountOfLastWeekEarnedMoney(){
+    @GetMapping(value = "/numberOfLastWeekEarnedMoney", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Double> getAmountOfLastWeekEarnedMoney() {
         List<Rent> rents = service.getAllRents();
         double sum = 0.0;
         LocalDate currentDate = LocalDate.now();
@@ -119,6 +118,6 @@ public class StatisticController {
                 sum += rent.getPrice();
             }
         }
-        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum* CurrencyValue.INSTANCE.getValue()));
+        return ResponseEntity.ok(MathUtils.roundToTwoDecimals(sum * CurrencyValue.INSTANCE.getValue()));
     }
 }

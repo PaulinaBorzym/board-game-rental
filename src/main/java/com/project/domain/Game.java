@@ -8,24 +8,19 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
-import java.util.List;
-
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "Games")
 public class Game {
-
     private Long gameId;
     private String title;
     private double price;
     private String publicationYear;
     private GameType type;
     private Rent rent;
-
     private String description;
-
 
     public Game(String title, double price, String publicationYear, GameType type, String description) {
         this.title = title;
@@ -69,6 +64,7 @@ public class Game {
     public String getPublicationYear() {
         return publicationYear;
     }
+
     @NonNull
     @Column(name = "TYPE")
     public GameType getType() {

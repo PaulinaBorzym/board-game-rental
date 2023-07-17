@@ -10,15 +10,13 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface CurrencyRepository extends CrudRepository <Currency, Long> {
-
+public interface CurrencyRepository extends CrudRepository<Currency, Long> {
     @Override
     List<Currency> findAll();
 
-    Optional<Currency> findByCurrencyCode (String currencyCode);
+    Optional<Currency> findByCurrencyCode(String currencyCode);
 
     @Override
     Currency save(Currency currency);
 
-    void deleteByCurrencyCode (String currencyCode );
 }

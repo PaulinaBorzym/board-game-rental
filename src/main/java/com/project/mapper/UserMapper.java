@@ -18,6 +18,7 @@ public class UserMapper {
                 userDto.getPhoneNumber()
         );
     }
+
     public UserDto mapToUserDto(final User user) {
         return UserDto.builder()
                 .userId(user.getUserId())
@@ -27,7 +28,8 @@ public class UserMapper {
                 .phoneNumber(user.getPhoneNumber())
                 .build();
     }
-    public List<UserDto> mapToUserDtoList (final List<User> userList){
+
+    public List<UserDto> mapToUserDtoList(final List<User> userList) {
         return userList.stream()
                 .map(this::mapToUserDto)
                 .collect(Collectors.toList());

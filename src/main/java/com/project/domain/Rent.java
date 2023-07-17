@@ -38,7 +38,7 @@ public class Rent {
     }
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "USER_ID",referencedColumnName = "USER_ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     @JsonBackReference(value = "UserReference")
     public User getUser() {
         return user;
@@ -58,6 +58,7 @@ public class Rent {
     public Game getGame() {
         return game;
     }
+
     @NonNull
     @Column(name = "START_DATE")
     public LocalDate getStartDate() {

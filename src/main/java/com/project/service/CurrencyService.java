@@ -6,7 +6,6 @@ import com.google.gson.JsonParser;
 import com.project.domain.Currency;
 import com.project.enums.SupportedCurrencies;
 import com.project.exeption.CurrencyNotFoundException;
-import com.project.exeption.GameNotFoundException;
 import com.project.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -29,11 +27,11 @@ public class CurrencyService {
         this.repository = repository;
     }
 
-    public List<Currency> getAllCurrencies(){
+    public List<Currency> getAllCurrencies() {
         return repository.findAll();
     }
 
-    public Currency getCurrencyByCode(String code) throws CurrencyNotFoundException{
+    public Currency getCurrencyByCode(String code) throws CurrencyNotFoundException {
         return repository.findByCurrencyCode(code).orElseThrow(CurrencyNotFoundException::new);
     }
 
@@ -50,8 +48,8 @@ public class CurrencyService {
 
     private void saveAllCurrencies(JsonObject rates) throws CurrencyNotFoundException {
         List<Currency> currencies = getAllCurrencies();
-        if (currencies.size() == 3){
-            for (SupportedCurrencies currency : SupportedCurrencies.values()){
+        if (currencies.size() == 3) {
+            for (SupportedCurrencies currency : SupportedCurrencies.values()) {
                 Double value = rates.get(currency.name()).getAsDouble();
                 Currency currentCurrency = getCurrencyByCode(currency.name());
                 currentCurrency.setValue(value);
@@ -59,10 +57,9 @@ public class CurrencyService {
             }
             return;
         }
-        for (SupportedCurrencies currency : SupportedCurrencies.values()){
+        for (SupportedCurrencies currency : SupportedCurrencies.values()) {
             Double value = rates.get(currency.name()).getAsDouble();
-            repository.save(new Currency(currency.name(),value));
+            repository.save(new Currency(currency.name(), value));
         }
-
     }
 }

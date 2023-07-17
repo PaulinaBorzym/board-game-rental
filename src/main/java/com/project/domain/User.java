@@ -16,13 +16,11 @@ import java.util.List;
 @Entity
 @Table(name = "PERSON")
 public class User {
-
     private Long userId;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
-
     private List<Rent> rentList;
 
     public User(String firstName, String lastName, String email, String phoneNumber) {
@@ -67,7 +65,6 @@ public class User {
     }
 
     @NonNull
-
     @Column(name = "PHONE_NUMBER")
     public String getPhoneNumber() {
         return phoneNumber;

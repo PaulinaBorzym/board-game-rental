@@ -11,7 +11,6 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface RentRepository extends CrudRepository<Rent, Long> {
-
     @Override
     List<Rent> findAll();
 

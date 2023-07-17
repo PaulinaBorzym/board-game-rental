@@ -7,8 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface CurrencyLogsRepository extends CrudRepository<CurrencyLogs,Long> {
-
+public interface CurrencyLogsRepository extends CrudRepository<CurrencyLogs, Long> {
     @Override
     CurrencyLogs save(CurrencyLogs currencyLogs);
 }

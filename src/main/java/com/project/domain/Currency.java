@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Currency")
+@Table(name = "CURRENCY")
 public class Currency {
     private Long currencyId;
     private String currencyCode;
@@ -29,18 +29,10 @@ public class Currency {
         return currencyId;
     }
 
-    public void setCurrencyId(Long currencyId) {
-        this.currencyId = currencyId;
-    }
-
     @NonNull
     @Column(name = "CURRENCY_CODE")
     public String getCurrencyCode() {
         return currencyCode;
-    }
-
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
     }
 
     @NonNull

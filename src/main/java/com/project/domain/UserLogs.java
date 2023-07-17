@@ -45,10 +45,12 @@ public class UserLogs {
     public String getTypeOfOperation() {
         return typeOfOperation;
     }
+
     @Column(name = "PREVIOUS_VALUE")
     public String getPreviousValue() {
         return previousValue;
     }
+
     @Column(name = "NEW_VALUE")
     public String getNewValue() {
         return newValue;

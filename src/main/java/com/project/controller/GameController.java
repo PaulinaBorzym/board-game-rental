@@ -23,7 +23,7 @@ public class GameController {
     private final GameMapper gameMapper;
 
     @GetMapping
-    public ResponseEntity<List<GameDto>> getGames(){
+    public ResponseEntity<List<GameDto>> getGames() {
         List<Game> games = service.getAllGames();
         return ResponseEntity.ok(gameMapper.mapToGameDtoList(games));
     }
@@ -34,24 +34,24 @@ public class GameController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void>createGame(@RequestBody GameDto gameDto) {
+    public ResponseEntity<Void> createGame(@RequestBody GameDto gameDto) {
         Game game = gameMapper.mapToGame(gameDto);
         service.saveGame(game);
-        logger.saveGameLog(LogType.CREATE,game);
+        logger.saveGameLog(LogType.CREATE, game);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
     public ResponseEntity<GameDto> updateGame(@RequestBody GameDto gameDto) {
         Game game = gameMapper.mapToGame(gameDto);
-        logger.saveGameLog(LogType.UPDATE,game);
+        logger.saveGameLog(LogType.UPDATE, game);
         Game savedGame = service.saveGame(game);
         return ResponseEntity.ok(gameMapper.mapToGameDto(savedGame));
     }
 
     @DeleteMapping(value = "{gameId}")
     public ResponseEntity<Void> deleteGame(@PathVariable Long gameId) throws GameNotFoundException {
-        logger.saveGameLog(LogType.DELETE,service.getGame(gameId));
+        logger.saveGameLog(LogType.DELETE, service.getGame(gameId));
         service.deleteGame(gameId);
         return ResponseEntity.ok().build();
     }

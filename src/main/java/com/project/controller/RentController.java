@@ -37,21 +37,21 @@ public class RentController {
     public ResponseEntity<Void> createRent(@RequestBody RentDto rentDto) {
         Rent rent = rentMapper.mapToRent(rentDto);
         service.saveRent(rent);
-        logger.saveRentLog(LogType.CREATE,rent);
+        logger.saveRentLog(LogType.CREATE, rent);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RentDto> updateRent(@RequestBody RentDto rentDto) {
         Rent rent = rentMapper.mapToRent(rentDto);
-        logger.saveRentLog(LogType.UPDATE,rent);
+        logger.saveRentLog(LogType.UPDATE, rent);
         Rent savedRent = service.saveRent(rent);
         return ResponseEntity.ok(rentMapper.mapToRentDto(savedRent));
     }
 
     @DeleteMapping(value = "{rentId}")
     public ResponseEntity<Void> deleteRent(@PathVariable Long rentId) throws RentNotFoundException {
-        logger.saveRentLog(LogType.DELETE,service.getRent(rentId));
+        logger.saveRentLog(LogType.DELETE, service.getRent(rentId));
         service.deleteRent(rentId);
         return ResponseEntity.ok().build();
     }

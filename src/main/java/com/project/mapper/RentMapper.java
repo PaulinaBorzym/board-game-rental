@@ -18,18 +18,18 @@ public class RentMapper {
                 rentDto.getGame(),
                 rentDto.getStartDate(),
                 rentDto.getEndDate(),
-                MathUtils.roundToTwoDecimals(rentDto.getPrice()/CurrencyValue.INSTANCE.getValue())
+                MathUtils.roundToTwoDecimals(rentDto.getPrice() / CurrencyValue.INSTANCE.getValue())
         );
     }
 
     public RentDto mapToRentDto(final Rent rent) {
-        return  RentDto.builder()
+        return RentDto.builder()
                 .rentId(rent.getRentId())
                 .user(rent.getUser())
                 .game(rent.getGame())
                 .startDate(rent.getStartDate())
                 .endDate(rent.getEndDate())
-                .price( MathUtils.roundToTwoDecimals(rent.getPrice()*CurrencyValue.INSTANCE.getValue()))
+                .price(MathUtils.roundToTwoDecimals(rent.getPrice() * CurrencyValue.INSTANCE.getValue()))
                 .build();
     }
 

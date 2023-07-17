@@ -24,7 +24,7 @@ public class StatisticService {
         this.userRepository = userRepository;
     }
 
-    public List<Game> getAllGames(){
+    public List<Game> getAllGames() {
         return gameRepository.findAll();
     }
 

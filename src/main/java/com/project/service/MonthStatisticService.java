@@ -16,17 +16,17 @@ public class MonthStatisticService {
     StatisticController controller;
 
     @Autowired
-    public MonthStatisticService(MonthStatisticRepository repository,StatisticController controller) {
+    public MonthStatisticService(MonthStatisticRepository repository, StatisticController controller) {
         this.repository = repository;
         this.controller = controller;
     }
 
-    public List<MonthStatistic> getAllMonthStatistic(){
+    public List<MonthStatistic> getAllMonthStatistic() {
         return repository.findAll();
     }
 
     @Scheduled(cron = "0 0 0 1 * *")
-    public MonthStatistic saveMonthStatistic(){
+    public MonthStatistic saveMonthStatistic() {
         MonthStatistic statistic = new MonthStatistic(
                 LocalDate.now().getMonth().name(),
                 String.valueOf(LocalDate.now().getYear()),
@@ -35,8 +35,7 @@ public class MonthStatisticService {
                 controller.getNumberOfAllRents().getBody(),
                 controller.getNumberOfLastMonthRents().getBody(),
                 controller.getAmountOfLastMonthEarnedMoney().getBody()
-                );
-
+        );
         return repository.save(statistic);
     }
 }

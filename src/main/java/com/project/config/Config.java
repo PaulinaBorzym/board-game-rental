@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Getter
 public class Config {
     @Value("${google.api.key}")
-    private  String XRapidAPIKey;
+    private String XRapidAPIKey;
     @Value("${google.api.host}")
-    private  String XRapidAPIHost;
+    private String XRapidAPIHost;
 }

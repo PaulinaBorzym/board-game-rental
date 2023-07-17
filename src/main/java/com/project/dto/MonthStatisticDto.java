@@ -3,10 +3,12 @@ package com.project.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
+@Setter
 public class MonthStatisticDto {
     private Long statisticId;
     private String month;
@@ -23,7 +25,6 @@ public class MonthStatisticDto {
 
     public static class Builder {
         private MonthStatisticDto monthStatisticDto = new MonthStatisticDto();
-
         public Builder statisticId(Long statisticId) {
             monthStatisticDto.statisticId = statisticId;
             return this;
@@ -33,10 +34,12 @@ public class MonthStatisticDto {
             monthStatisticDto.month = month;
             return this;
         }
+
         public Builder year(String year) {
             monthStatisticDto.year = year;
             return this;
         }
+
         public Builder numberOfUsers(int numberOfUsers) {
             monthStatisticDto.numberOfUsers = numberOfUsers;
             return this;
@@ -46,21 +49,24 @@ public class MonthStatisticDto {
             monthStatisticDto.numberOfGames = numberOfGames;
             return this;
         }
-        public Builder numberOfAllRents (int numberOfAllRents) {
+
+        public Builder numberOfAllRents(int numberOfAllRents) {
             monthStatisticDto.numberOfAllRents = numberOfAllRents;
             return this;
         }
-        public Builder numberOfLastMonthRents (int numberOfLastMonthRents) {
+
+        public Builder numberOfLastMonthRents(int numberOfLastMonthRents) {
             monthStatisticDto.numberOfLastMonthRents = numberOfLastMonthRents;
             return this;
         }
-        public Builder amountOfLastMonthEarnedMoney (double amountOfLastMonthEarnedMoney) {
+
+        public Builder amountOfLastMonthEarnedMoney(double amountOfLastMonthEarnedMoney) {
             monthStatisticDto.amountOfLastMonthEarnedMoney = amountOfLastMonthEarnedMoney;
             return this;
         }
-        public MonthStatisticDto build(){
-            return monthStatisticDto ;
+
+        public MonthStatisticDto build() {
+            return monthStatisticDto;
         }
     }
-
 }

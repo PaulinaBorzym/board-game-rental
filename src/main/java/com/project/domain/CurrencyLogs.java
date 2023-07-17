@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "CURRENCY_LOGS")
 public class CurrencyLogs {
-
     private Long currencyLoggerId;
     private LocalDateTime timeStamp;
     private double PLN;

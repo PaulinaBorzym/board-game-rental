@@ -1,9 +1,7 @@
 package com.project.controller;
 
 import com.project.domain.MonthStatistic;
-import com.project.domain.Rent;
 import com.project.dto.MonthStatisticDto;
-import com.project.dto.RentDto;
 import com.project.mapper.MonthStatisticMapper;
 import com.project.service.MonthStatisticService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("v1/statistic/month")
 public class MonthStatisticController {
-
     private final MonthStatisticService monthStatisticService;
     private final MonthStatisticMapper monthStatisticMapper;
 

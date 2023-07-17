@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface MonthStatisticRepository extends CrudRepository<MonthStatistic,Long> {
+public interface MonthStatisticRepository extends CrudRepository<MonthStatistic, Long> {
     @Override
     List<MonthStatistic> findAll();
 

@@ -20,8 +20,8 @@ public class LoggerService {
     private GameRepository gameRepository;
     private UserRepository userRepository;
     private RentRepository rentRepository;
-
     private CurrencyRepository currencyRepository;
+
     @Autowired
     public LoggerService(GameLogsRepository gameLogsRepository, UserLogsRepository userLogsRepository,
                          RentLogsRepository rentLogsRepository, CurrencyLogsRepository currencyLogsRepository,
@@ -37,11 +37,10 @@ public class LoggerService {
         this.currencyRepository = currencyRepository;
     }
 
-
-    public void saveGameLog(LogType type, Game game){
+    public void saveGameLog(LogType type, Game game) {
         GameLogs log = new GameLogs();
         log.setTimeStamp(LocalDateTime.now());
-        if(type.equals(LogType.CREATE)){
+        if (type.equals(LogType.CREATE)) {
             log.setNewValue(game.toString());
             log.setTypeOfOperation(type.toString());
         } else if (type.equals(LogType.DELETE)) {
@@ -52,14 +51,15 @@ public class LoggerService {
             log.setPreviousValue(gameRepository.findById(game.getGameId()).get().toString());
             log.setTypeOfOperation(type.toString());
         }
-        if (Objects.nonNull(log.getTypeOfOperation())){
+        if (Objects.nonNull(log.getTypeOfOperation())) {
             gameLogsRepository.save(log);
         }
     }
-    public void saveRentLog(LogType type, Rent rent){
+
+    public void saveRentLog(LogType type, Rent rent) {
         RentLogs log = new RentLogs();
         log.setTimeStamp(LocalDateTime.now());
-        if(type.equals(LogType.CREATE)){
+        if (type.equals(LogType.CREATE)) {
             log.setNewValue(rent.toString());
             log.setTypeOfOperation(type.toString());
         } else if (type.equals(LogType.DELETE)) {
@@ -70,16 +70,15 @@ public class LoggerService {
             log.setPreviousValue(rentRepository.findById(rent.getRentId()).get().toString());
             log.setTypeOfOperation(type.toString());
         }
-        if (Objects.nonNull(log.getTypeOfOperation())){
+        if (Objects.nonNull(log.getTypeOfOperation())) {
             rentLogsRepository.save(log);
         }
-
     }
 
-    public void saveUserLog(LogType type, User user){
+    public void saveUserLog(LogType type, User user) {
         UserLogs log = new UserLogs();
         log.setTimeStamp(LocalDateTime.now());
-        if(type.equals(LogType.CREATE)){
+        if (type.equals(LogType.CREATE)) {
             log.setNewValue(user.toString());
             log.setTypeOfOperation(type.toString());
         } else if (type.equals(LogType.DELETE)) {
@@ -90,23 +89,23 @@ public class LoggerService {
             log.setPreviousValue(userRepository.findById(user.getUserId()).get().toString());
             log.setTypeOfOperation(type.toString());
         }
-        if (Objects.nonNull(log.getTypeOfOperation())){
+        if (Objects.nonNull(log.getTypeOfOperation())) {
             userLogsRepository.save(log);
         }
     }
 
     @Scheduled(cron = "0 10 1 * * *")
-    public void saveCurrencyLog(){
+    public void saveCurrencyLog() {
         CurrencyLogs log = new CurrencyLogs();
         log.setTimeStamp(LocalDateTime.now());
         List<Currency> currencyList = currencyRepository.findAll();
-        log.setPLN(findValue("PLN",currencyList));
+        log.setPLN(findValue("PLN", currencyList));
         log.setUSD(findValue("USD", currencyList));
         log.setEUR(findValue("EUR", currencyList));
         currencyLogsRepository.save(log);
     }
 
-    private double findValue(String currencyCode, List<Currency> currencyList){
+    private double findValue(String currencyCode, List<Currency> currencyList) {
         return currencyList.stream()
                 .filter(currency -> currency.getCurrencyCode().equals(currencyCode))
                 .map(currency -> currency.getValue())

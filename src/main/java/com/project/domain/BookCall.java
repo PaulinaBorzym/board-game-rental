@@ -12,12 +12,10 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "BOOK_CALL")
 public class BookCall {
-
     private Long bookCallId;
     private LocalDate bookDate;
     private String phoneNumber;
     private String title;
-
 
     public BookCall(Long bookCallId, LocalDate bookDate, String phoneNumber, String title) {
         this.bookCallId = bookCallId;
@@ -44,9 +42,9 @@ public class BookCall {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
     @Column(name = "Title")
     public String getTitle() {
         return title;
     }
-
 }

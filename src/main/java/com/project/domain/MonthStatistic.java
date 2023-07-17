@@ -44,31 +44,37 @@ public class MonthStatistic {
     public String getMonth() {
         return month;
     }
+
     @NonNull
     @Column(name = "YEAR")
     public String getYear() {
         return year;
     }
+
     @NonNull
     @Column(name = "NUMBER_OF_USERS")
     public int getNumberOfUsers() {
         return numberOfUsers;
     }
+
     @NonNull
     @Column(name = "NUMBER_OF_GAMES")
     public int getNumberOfGames() {
         return numberOfGames;
     }
+
     @NonNull
     @Column(name = "NUMBER_OF_ALL_RENTS")
     public int getNumberOfAllRents() {
         return numberOfAllRents;
     }
+
     @NonNull
     @Column(name = "NUMBER_OF_LAST_MONTH_RENTS")
     public int getNumberOfLastMonthRents() {
         return numberOfLastMonthRents;
     }
+
     @NonNull
     @Column(name = "NUMBER_OF_LAST_MONTH_ERNED_MONEY")
     public double getAmountOfLastMonthEarnedMoney() {
