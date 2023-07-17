@@ -128,7 +128,8 @@ public class RentControllerTestSuite {
     @Test
     public void shouldUpdateExistingRent() throws Exception {
         // Given
-        Game game = new Game(1L, "Kalambury", 10, "2015", GameType.FAMILY, "Fajna gra");
+        Game game = new Game(1L, "Kalambury", 10, "2015",
+                GameType.FAMILY, "Fajna gra");
         User user = new User(1L, "Ania", "Kania", "kania@ania", "55555");
         RentDto rentDto = new RentDto(1L, user, game, LocalDate.now(), LocalDate.now().plusDays(3), 15);
         Rent rent = new Rent(1L, user, game, LocalDate.now(), LocalDate.now().plusDays(3), 15);

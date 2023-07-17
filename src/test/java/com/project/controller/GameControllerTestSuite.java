@@ -125,8 +125,10 @@ public class GameControllerTestSuite {
     @Test
     public void shouldUpdateExistingGame() throws Exception {
         // Given
-        GameDto gameDto = new GameDto(1L, "Kalambury", 10, "2015", GameType.FAMILY, "Fajna gra");
-        Game game = new Game(1L, "Kalambury", 10, "2015", GameType.FAMILY, "Fajna gra");
+        GameDto gameDto = new GameDto(1L, "Kalambury", 10, "2015",
+                GameType.FAMILY, "Fajna gra");
+        Game game = new Game(1L, "Kalambury", 10, "2015",
+                GameType.FAMILY, "Fajna gra");
 
         when(gameMapper.mapToGame(gameDto)).thenReturn(game);
         when(gameMapper.mapToGameDto(any())).thenReturn(gameDto);

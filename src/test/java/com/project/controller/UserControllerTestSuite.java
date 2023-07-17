@@ -21,17 +21,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 
 @SpringJUnitConfig
 @SpringBootTest
 @AutoConfigureMockMvc
 public class UserControllerTestSuite {
-
     @Autowired
     private MockMvc mockMvc;
     @Autowired
